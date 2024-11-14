@@ -4,28 +4,45 @@ import GoogleButton from "react-google-button";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserAuth } from "../configuration/UserAuthContext";
 import "./commonloginsignup.css";
+import { auth } from "../configuration/firebase-config";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("")
   const navigate = useNavigate();
-  const {logIn} = useUserAuth()
+  const {logIn, googleSignIn, resetPasswordWithEmail} = useUserAuth()
 
 	const handleSignIn = async (e) => {
 		e.preventDefault()
     try{
       await logIn(email, password)
-		  navigate("/home")
+      navigate("/home")
     }
     catch(e) {
       setError(e.message)
     }
 	}
 
-  const handleGoogleSignIn = () => {
-    navigate("/home");
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault()
+    try{
+      await googleSignIn()
+      navigate("/home");
+    }
+    catch(e) {
+      console.log(e.message)
+    }
   };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault()
+    try {
+      await resetPasswordWithEmail(email)
+    } catch (e) {
+      console.log(e.message)
+    }
+  }
 
   return (
     <>
@@ -55,7 +72,7 @@ const Login = () => {
             </div>
           </Form>
           <hr />
-          <div>
+          <div className="w-100 align-items-center d-flex justify-content-center">
             <GoogleButton
               className="g-btn"
               type="dark"
@@ -65,6 +82,9 @@ const Login = () => {
           <div className="p-4 box mt-3 text-center">
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </div>
+        <div className="mt-2">
+          <p style={{textAlign:'left', color:'rgb(66, 133, 244)', cursor:'pointer'}} className="mb-0" onClick={handleResetPassword}>forget password?</p>
+        </div>
         </div>
       </div>
     </>

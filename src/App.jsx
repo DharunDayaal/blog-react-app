@@ -9,28 +9,26 @@ import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <>
-      <Container>
-        <Row>
-          <Col>
-            <UserAuthContextProvider>
-              <Routes>
-                <Route path="/" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route
-                  path="/home"
-                  element={
-                    <ProtectedRoute>
-                      <HomePage />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </UserAuthContextProvider>
-          </Col>
-        </Row>
-      </Container>
-    </>
+    <Container>
+      <Row>
+        <Col>
+          <UserAuthContextProvider>
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route
+                path="/home"
+                element={
+                  <ProtectedRoute>
+                    <HomePage />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </UserAuthContextProvider>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
