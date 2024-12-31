@@ -1,6 +1,7 @@
 import React from "react";
 import { useUserAuth } from "../configuration/UserAuthContext";
 import { Button } from "react-bootstrap";
+import NavBar from "../components/navBar"
 
 const HomePage = () => {
   const { user, logOut } = useUserAuth();
@@ -16,16 +17,15 @@ const HomePage = () => {
   }
 
   return (
-    <>
+    <div>
       {user ? (
-        <>
-          Hello <br />{user.email}
-          <Button variant="primary" onClick={handleLogOut}>Log Out</Button>
-        </>
+        <div className="m-0 p-0">
+          <NavBar />
+        </div>
       ) : (
-        <p>Loading user data...</p>
+        <p>Loading blog data...</p>
       )}
-    </>
+    </div>
   );
   
 };

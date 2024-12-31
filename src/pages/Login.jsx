@@ -83,7 +83,7 @@ const Login = () => {
             Don't have an account? <Link to="/signup">Sign Up</Link>
           </div>
         <div className="mt-2">
-          <p style={{textAlign:'left', color:'rgb(66, 133, 244)', cursor:'pointer'}} className="mb-0" onClick={handleResetPassword}>forget password?</p>
+          <p style={{textAlign:'left', color:'rgb(66, 133, 244)', cursor:'pointer', fontFamily:'Poppins, sans-serif'}} className="mb-0" onClick={handleResetPassword}>forget password?</p>
         </div>
         </div>
       </div>
